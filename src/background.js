@@ -16,10 +16,9 @@ async function createWindow() {
     width: 1024,
     height: 768,
     webPreferences: {
-      
       // Required for Spectron testing
       enableRemoteModule: true,
-      
+
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
@@ -56,6 +55,7 @@ app.on('activate', () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
+  registerLocalResourceProtocol()
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
     try {
@@ -66,7 +66,19 @@ app.on('ready', async () => {
   }
   createWindow()
 })
-
+function registerLocalResourceProtocol() {
+  protocol.registerFileProtocol('local-resource', (request, callback) => {
+    const url = request.url.replace(/^local-resource:\/\//, '')
+    // Decode URL to prevent errors when loading filenames with UTF-8 chars or chars like "#"
+    const decodedUrl = decodeURI(url) // Needed in case URL contains spaces
+    try {
+      return callback(decodedUrl)
+    }
+    catch (error) {
+      console.error('ERROR: registerLocalResourceProtocol: Could not get file path:', error)
+    }
+  })
+}
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
   if (process.platform === 'win32') {

@@ -15,7 +15,7 @@
       <v-divider></v-divider>
 
       <v-list>
-        <v-list-item v-for="[icon, text] in links" :key="icon" link>
+        <v-list-item v-for="[icon, text, link] in links" :key="icon" link :to="link">
           <v-list-item-icon>
             <v-icon>{{ icon }}</v-icon>
           </v-list-item-icon>
@@ -39,8 +39,8 @@ export default {
     cards: ["Today", "Yesterday"],
     drawer: null,
     links: [
-      ["fa fa-list", "Library"],
-      ["fa fa-dungeon", "Adventures"],
+      ["fa fa-list", "Library", "/"],
+      ["fa fa-dungeon", "Adventures", "/adventure"],
       ["fa fa-dice-d20", "Session"],
       ["fa fa-info", "About"],
     ],

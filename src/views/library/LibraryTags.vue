@@ -1,12 +1,19 @@
 <template>
   <v-card>
-      <v-subheader>Tags <v-icon class="ml-2" size="12">fa fa-tag</v-icon></v-subheader>
+    <v-subheader
+      >Tags <v-icon class="ml-2" size="12">fa fa-tag</v-icon></v-subheader
+    >
     <v-card-text>
       <v-row>
         <v-col class="text-center">
           <v-btn-toggle v-model="tagColor" tile group dense>
-            <v-btn v-for="(color, index) in colors" :key="index" :value="color" small>
-              <v-icon :style="{color: color}" small>fa fa-circle</v-icon> 
+            <v-btn
+              v-for="(color, index) in colors"
+              :key="index"
+              :value="color"
+              small
+            >
+              <v-icon :style="{ color: color }" small>fa fa-circle</v-icon>
             </v-btn>
           </v-btn-toggle>
           <v-text-field
@@ -22,18 +29,18 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <v-chip
-            @click:close="deleteTag(item.doc)"
-            class="mb-1 mr-1"
-            small
-            dark
-            draggable
-            :style="{ backgroundColor: item.doc.color }"
-            v-for="(item, index) in tags"
-            :key="index"
-            close
-            >{{ item.doc.name }}</v-chip
-          >
+          <drag v-for="item in tags" :key="item.doc._id" :transfer-data="item.doc">
+            <v-chip
+              @click:close="deleteTag(item.doc)"
+              draggable
+              class="mb-1 mr-1"
+              small
+              dark
+              :style="{ backgroundColor: item.doc.color }"
+              close
+              >{{ item.doc.name }}</v-chip
+            >
+          </drag>
         </v-col>
       </v-row>
     </v-card-text>
@@ -51,16 +58,24 @@ export default {
     tagColor: "",
     tags: [],
     colors: [
-      colors.red.base, colors.purple.base,
-      colors.indigo.base, colors.lightBlue.base,
-      colors.green.base, colors.lime.base,
-      colors.orange.base, colors.pink.base
+      colors.red.base,
+      colors.purple.base,
+      colors.indigo.base,
+      colors.lightBlue.base,
+      colors.green.base,
+      colors.lime.base,
+      colors.orange.base,
+      colors.pink.base,
     ],
   }),
   created() {
     this.getTags();
   },
   methods: {
+    getChildPayload(index) {
+      debugger;
+      return this.tags[index];
+    },
     getTags() {
       tagRepository.allDocs({ include_docs: true }).then((result) => {
         this.tags = result.rows;

@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="3">
         <v-row>
-          <v-col><LibraryCategories/>
+          <v-col><LibraryCategories @changeCategory="changeCategory"/>
           </v-col>
         </v-row>
         <v-row>
@@ -13,7 +13,7 @@
       <v-col>
         <v-row>
           <v-col>
-            <LibrarySoundFiles />
+            <LibrarySoundFiles :activeCategory="activeCategory"/>
           </v-col>
         </v-row>
       </v-col>
@@ -29,7 +29,14 @@ import LibraryTags from "./LibraryTags";
 export default {
   name: "Library",
   components: { LibraryCategories, LibrarySoundFiles, LibraryTags },
-  data: () => ({}),
+  data: () => ({
+    activeCategory: {}
+  }),
+  methods: {
+    changeCategory(value){
+      this.activeCategory = value;
+    }
+  }
 };
 </script>
 

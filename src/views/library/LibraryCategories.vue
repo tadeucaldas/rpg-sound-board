@@ -6,12 +6,15 @@
         <v-row>
           <v-col>
             <v-treeview
+              hoverable
               activatable
+              @update:active="changeCategory"
               dense
-              expand-icon="fa fa-xs fa-chevron-down"
+              expand-icon="fal fa-xs fa-chevron-down"
               item-key="doc._id"
               item-text="doc.name"
               :items="tree"
+              return-object
             >
               <template v-slot:prepend="{ open }">
                 <v-icon size="12">
@@ -85,6 +88,9 @@ export default {
     this.getCategories();
   },
   methods: {
+    changeCategory(value){
+      this.$emit('changeCategory', value[0] ? value[0].doc : null);
+    },
     newCategory(parent) {
       this.dialog = true;
       this.currentCategory = {};
