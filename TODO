@@ -1,5 +1,6 @@
-
 Biblioteca:
+  ☐ Editar nome direto na lista
+  ☐ Alterar para flex box
   ☐ Excluir som
   ☐ Editar som
   ☐ Renomear som
@@ -9,15 +10,31 @@ Biblioteca:
   ☐ Mudar local do arquivo??
   ☐ ordenar cat, tags e sons por ordem alfabética
   ☐ excluir categoria e sons
+  ☐ salvar volume padrão do áudio
 
 Adventures:
-  ☐ Criar Aventura
-  ☐ Criar design
-  ☐ Criar personagens
-  ☐ Criar ambiente
+  ☐ Editar aventura
+  ☐ Excluir aventura
+  ☐ Selecionar aventura
+
+Adventure:
+  Scenary:
+    ☐ Criar cenário
+    ☐ Adicionar icone e texto para cenário
+    ☐ Arrastar para adicionar som ao cenário
+    ☐ Criar design e lista de sons por cenário
+
+  Character:
+    ☐ Criar char
+    ☐ Adicionar icone e texto para char
+    ☐ Arrastar para adicionar som ao char
+    ☐ Toggle Player/NPC
   
 
 Session:
 
 About:
 
+DONE:
+  ✔ Criar Aventura @done(21-03-22 16:11)
+  ✔ Criar design @done(21-03-22 16:11)

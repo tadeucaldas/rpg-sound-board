@@ -1,12 +1,12 @@
 <template>
-  <v-container class="pa-4" fluid>
+  <v-container class="d-flex">
     <v-row>
       <v-col cols="3">
         <v-row>
           <v-col><LibraryCategories @changeCategory="changeCategory"/>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="showTags">
           <v-col><LibraryTags /></v-col>
         </v-row>
       </v-col>
@@ -29,6 +29,12 @@ import LibraryTags from "./LibraryTags";
 export default {
   name: "Library",
   components: { LibraryCategories, LibrarySoundFiles, LibraryTags },
+  props: {
+    showTags: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => ({
     activeCategory: {}
   }),

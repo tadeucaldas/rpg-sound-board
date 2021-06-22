@@ -4,7 +4,7 @@ import {normalizeForId} from '@/utils/stringUtils'
 let categoryRepository = new PouchDB('categories');
 
 let createId = function(category){
-    return normalizeForId("cat_" + category.name) + new Date().getTime();
+    return normalizeForId("category_" + category.name) + new Date().getTime();
 }
 
 let createCategory = function (category){

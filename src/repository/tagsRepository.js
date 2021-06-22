@@ -4,7 +4,7 @@ import {normalizeForId} from '@/utils/stringUtils'
 let tagRepository = new PouchDB('tags');
 
 let createId = function(tag){
-    return normalizeForId(tag.name) + new Date().getTime();
+    return normalizeForId("tag_" + tag.name) + new Date().getTime();
 }
 
 let createTag = function (tag){

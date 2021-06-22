@@ -80,7 +80,6 @@ export default {
       saveSounds(soundsToSave).then(this.getSounds);
       this.files = [];
     },
-
     prepareSound(file) {
       let item = {
         name: file.name.split(".")[0],

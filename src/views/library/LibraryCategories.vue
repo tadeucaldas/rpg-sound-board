@@ -21,7 +21,7 @@
                   {{ open ? "fal fa-folder-open" : "fal fa-folder" }}
                 </v-icon>
               </template>
-              <template v-slot:append="{ item }">
+              <template v-slot:append="{ item }" v-if="!viewOnly">
                 <v-btn icon small @click="editCategoty(item.doc)">
                   <v-icon size="12">fal fa-pencil</v-icon>
                 </v-btn>
@@ -35,7 +35,7 @@
             </v-treeview>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="!viewOnly">
           <v-col class="text-center">
             <v-btn small rounded color="success" @click="newCategory()"
               >Create new Category</v-btn
@@ -44,7 +44,7 @@
         </v-row>
       </v-card-text>
     </v-card>
-    <v-dialog v-model="dialog" persistent width="300">
+    <v-dialog v-model="dialog" persistent width="300" v-if="!viewOnly">
       <v-card>
         <v-subheader>Edit category</v-subheader>
         <v-card-text>
@@ -72,6 +72,12 @@ import {
 
 export default {
   name: "LibraryCategories",
+  props: {
+    viewOnly: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => ({
     categories: [],
     currentCategory: {},
@@ -118,7 +124,6 @@ export default {
       });
     },
     getChildren(currentVal) {
-      console.log(new Date());
       let children = this.categories.filter(
         (value) => value.doc.parent == currentVal.doc._id
       );

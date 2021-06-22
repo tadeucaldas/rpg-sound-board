@@ -5,7 +5,7 @@ PouchDB.plugin(require('pouchdb-find'));
 let soundRepository = new PouchDB('sounds');
 
 let createId = function (sound) {
-    return normalizeForId(sound.category + "_" + sound.name) + new Date().getTime();
+    return normalizeForId(sound.category + "_sound_" + sound.name) + new Date().getTime();
 }
 
 let createSound = function (sound) {

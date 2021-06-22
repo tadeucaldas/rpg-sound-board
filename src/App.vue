@@ -11,9 +11,6 @@
         <v-avatar class="mb-4" color="grey darken-1" size="64"></v-avatar>
         <div>Welcome do your RPG Soundboard!</div>
       </v-sheet>
-
-      <v-divider></v-divider>
-
       <v-list>
         <v-list-item v-for="[icon, text, link] in links" :key="icon" link :to="link">
           <v-list-item-icon>
@@ -40,7 +37,7 @@ export default {
     drawer: null,
     links: [
       ["fa fa-list", "Library", "/"],
-      ["fa fa-dungeon", "Adventures", "/adventure"],
+      ["fa fa-dungeon", "Adventures", "/adventures"],
       ["fa fa-dice-d20", "Session"],
       ["fa fa-info", "About"],
     ],
